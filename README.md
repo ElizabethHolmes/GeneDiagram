@@ -30,7 +30,7 @@ gene8 | pseudogene | - | 1800 | 2000
 ### Example
 To create a diagram illustrating the genes described in the example input file provided, 'genes.txt', the command would be:
 
-  java -jar GeneDiagram.jar genes.txt
+    java -jar GeneDiagram.jar genes.txt
   
 ## Output
 GeneDiagram generates a JPEG file illustrating the genes coloured by category and with a legend. The example above produces the example diagram provided, 'genes.jpg'.
