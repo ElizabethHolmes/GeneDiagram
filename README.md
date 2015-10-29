@@ -2,8 +2,6 @@
 ## About
 GeneDiagram is a Java program for drawing linear diagrams of genes coloured by category. The categories can be of any type e.g. functional categories, such as those provided by the [Gene Ontology Consortium](http://geneontology.org/), or other user-defined categories, such types of differences in the genes vs a reference genome (SNPs, frameshift, etc.). If "pseudogene" is one of the categories, genes of this category are coloured white.
 
-** PLEASE NOTE: GeneDiagram is one of my first Java programs written as a beginner Java programmer and so I apologise if the code is inelegant, unconventional or otherwise sub-optimal; it works for the intended purpose and I provide it in case it might be useful to others, but with no guarantees. **
-
 ## Citation
 GeneDiagram is not associated with a paper; to cite it please use:
 
