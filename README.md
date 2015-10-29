@@ -16,13 +16,13 @@ GeneDiagram takes as its input a tab-delimited text file, such as the 'genes.txt
 
  | | | | |
 --- | --- | --- | --- | ---
-gene1 | category1 | + | 200 | 300
-gene2 | category2 | - | 300 | 400
-gene3 | category3 | + | 600 | 700
-gene4 | category4 | + | 800 | 900
-gene5 | category1 | - | 1000 | 1200
-gene6 | category5 | + | 1300 | 1400
-gene7 | category6 | + | 1500 | 1700
+gene1 | transcriptional regulator | + | 200 | 300
+gene2 | hypothetical protein | - | 300 | 400
+gene3 | histone | + | 600 | 700
+gene4 | signalling receptor | + | 800 | 900
+gene5 | hypothetical protein | - | 1000 | 1200
+gene6 | ATPase | + | 1300 | 1400
+gene7 | binding protein | + | 1500 | 1700
 gene8 | pseudogene | - | 1800 | 2000
 
 ### Example
@@ -31,6 +31,6 @@ To create a diagram illustrating the genes described in the example input file p
     java -jar GeneDiagram.jar genes.txt
   
 ## Output
-GeneDiagram generates a JPEG file illustrating the genes coloured by category and with a legend. The example above produces the example diagram provided, 'genes.jpg'.
+GeneDiagram generates a JPEG file illustrating the genes coloured by category and with a legend. The example above produces the example diagram provided, 'gene_diagram.jpg'.
 
 
