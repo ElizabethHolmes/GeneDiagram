@@ -19,9 +19,9 @@ public class Diagram extends JPanel {
     public ArrayList<Color> colours;
     
     //Height of diagram - proportional to size of gene area to display
-    public int height = (GeneDiagram.maxstop - GeneDiagram.minstart > 400) ? (GeneDiagram.maxstop-GeneDiagram.minstart)/25+1000 : 200;
-    public int genestart;
-    public int genestop;
+    public int height = (GeneDiagram.maxStop - GeneDiagram.minStart > 400) ? (GeneDiagram.maxStop-GeneDiagram.minStart)/25+1000 : 200;
+    public int geneStart;
+    public int geneStop;
 
     public Diagram(ArrayList<Gene> genes, ArrayList<String> categories, ArrayList<Color> colours) {
         this.genes = genes;
@@ -39,12 +39,12 @@ public class Diagram extends JPanel {
         g2.setFont(new Font("Arial",0,50));
         
         //Adding line
-        g2.drawLine(50, height/2, GeneDiagram.maxstop-GeneDiagram.minstart+47, height/2);
+        g2.drawLine(50, height/2, GeneDiagram.maxStop-GeneDiagram.minStart+47, height/2);
         
         //Adding genes and labels
         for (Gene gene : genes) {
-            genestart = gene.start - GeneDiagram.minstart + 50;
-            genestop = gene.stop - GeneDiagram.minstart + 50; 
+            geneStart = gene.start - GeneDiagram.minStart + 50;
+            geneStop = gene.stop - GeneDiagram.minStart + 50; 
             drawGene(g2, gene);
             drawLabel(g2, gene);
         }
@@ -56,28 +56,30 @@ public class Diagram extends JPanel {
     public void drawGene(Graphics2D g2, Gene gene) {
         
         //Setting co-ordinates
-        int arrowstart;
+        int arrowStart;
         
-        if (genestop - genestart > 55) {
+        //Determining direction of arrow
+        if (geneStop - geneStart > 55) {
             if (gene.direction == true) {
-                arrowstart = genestop - 50; 
+                arrowStart = geneStop - 50; 
             } else {
-                arrowstart = genestart + 50;
+                arrowStart = geneStart + 50;
             }
         } else {
             if (gene.direction == true) {
-                arrowstart = (int)(genestop - 0.3*(genestart-genestop));
+                arrowStart = (int)(geneStop - 0.3*(geneStart-geneStop));
             } else {
-                arrowstart = (int)(genestart + 0.3*(genestart-genestop));
+                arrowStart = (int)(geneStart + 0.3*(geneStart-geneStop));
             }
         }
         
-        int xs[] = {genestart, arrowstart, genestop, (gene.direction == true) ? arrowstart : genestop, (gene.direction == true) ? genestart : arrowstart};
+        //Setting co-ordinates, taking arrow direction into account
+        int xs[] = {geneStart, arrowStart, geneStop, (gene.direction == true) ? arrowStart : geneStop, (gene.direction == true) ? geneStart : arrowStart};
         int ys[] = {(gene.direction == true) ? 500 : height/2, 500, (gene.direction == true)? height/2 : 500, height-500, height-500};
         
         //Setting colour
-        int colourindex = GeneDiagram.categories.indexOf(gene.category);
-        g2.setColor(GeneDiagram.colours.get(colourindex));
+        int colourIndex = GeneDiagram.categories.indexOf(gene.category);
+        g2.setColor(GeneDiagram.colours.get(colourIndex));
         
         //Drawing gene
         g2.fillPolygon(xs,ys,5);
@@ -89,11 +91,11 @@ public class Diagram extends JPanel {
     public void drawLabel(Graphics2D g2, Gene gene) {
         
         //Rotating graphics object to enable label to be written at an angle
-        AffineTransform transform = AffineTransform.getRotateInstance(-Math.PI/4, (genestop-genestart)/2+genestart,490);
+        AffineTransform transform = AffineTransform.getRotateInstance(-Math.PI/4, (geneStop-geneStart)/2+geneStart,490);
         g2.transform(transform);
         
         //Setting co-ordinates for label
-        Point2D original = new Point2D.Float((float)(genestop-genestart)/2+genestart,(float)490);
+        Point2D original = new Point2D.Float((float)(geneStop-geneStart)/2+geneStart,(float)490);
         Point2D transformed = new Point2D.Float(0,0);
         transform.transform(original, transformed);
         
@@ -122,14 +124,14 @@ public class Diagram extends JPanel {
                 
                 //Drawing the coloured squares
                 g2.setColor(Color.BLACK);
-                g2.drawRect(genestop+150, (int)(startheight+i*rectsize*1.25), rectsize, rectsize);
+                g2.drawRect(geneStop+150, (int)(startheight+i*rectsize*1.25), rectsize, rectsize);
                 g2.setColor(GeneDiagram.colours.get(i));
-                g2.fillRect(genestop+150, (int)(startheight+i*rectsize*1.25), rectsize, rectsize);
+                g2.fillRect(geneStop+150, (int)(startheight+i*rectsize*1.25), rectsize, rectsize);
                 
                 //Drawing the labels
                 String label = GeneDiagram.categories.get(i);
                 g2.setColor(Color.BLACK);
-                g2.drawString(label, genestop+175+rectsize, (int)(startheight+25+i*rectsize*1.25)+10);
+                g2.drawString(label, geneStop+175+rectsize, (int)(startheight+25+i*rectsize*1.25)+10);
             }
     }
 }
