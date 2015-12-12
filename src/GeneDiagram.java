@@ -16,9 +16,9 @@ import javax.swing.SwingUtilities;
 
 public class GeneDiagram {
     
-    public static int minstart = -1;
-    public static int maxstop = -1;
-    public static int numberofcategories;
+    public static int minStart = -1;
+    public static int maxStop = -1;
+    public static int numCategories;
     public static ArrayList<Gene> genes = new ArrayList();
     public static ArrayList<String> categories = new ArrayList();
     public static ArrayList<Color> colours = new ArrayList();
@@ -45,26 +45,26 @@ public class GeneDiagram {
                 }
                 
                 //Getting overall start and stop co-ordinates
-                if (minstart == -1) {
-                    minstart = gene.start;
-                } else if (minstart > gene.start) {
-                    minstart = gene.start;
+                if (minStart == -1) {
+                    minStart = gene.start;
+                } else if (minStart > gene.start) {
+                    minStart = gene.start;
                 }
                 
-                if (maxstop == -1) {
-                    maxstop = gene.stop;
-                } else if (maxstop < gene.start) {
-                    maxstop = gene.stop;
+                if (maxStop == -1) {
+                    maxStop = gene.stop;
+                } else if (maxStop < gene.start) {
+                    maxStop = gene.stop;
                 }
             }
             
             fileReader.close();
         
             //Setting category colours
-            numberofcategories = categories.size();
+            numCategories = categories.size();
             
             //Creating array of colours for first 9 categories
-            Color[] standardcolours = {Color.RED,Color.YELLOW,Color.BLUE,Color.GREEN,Color.MAGENTA,Color.ORANGE,Color.CYAN,Color.PINK,Color.GRAY};
+            Color[] standardColours = {Color.RED,Color.YELLOW,Color.BLUE,Color.GREEN,Color.MAGENTA,Color.ORANGE,Color.CYAN,Color.PINK,Color.GRAY};
         
             //Moving pseudogene to the end of the list if present to allow preceding categories to be assigned non-white colours
             if (categories.contains("pseudogene")) {
@@ -73,11 +73,11 @@ public class GeneDiagram {
             }
         
             //Creating list of colours corresponding to categories
-            for (int i=0; i<numberofcategories; i++) {
+            for (int i=0; i<numCategories; i++) {
                 if (categories.get(i).equals("pseudogene")) {
                     colours.add(Color.WHITE);
                 } else if (i < 9) {
-                    colours.add(standardcolours[i]);
+                    colours.add(standardColours[i]);
                 } else if (i < 31) {
                     colours.add(new Color(10*i-50,10*i-50,10*i-50));
                 } else {
@@ -122,7 +122,7 @@ public class GeneDiagram {
         Diagram diagram = new Diagram(genes, categories, colours);
         
         //Setting dimensions based on size of gene area to be displayed and width of longest text string in legend
-        diagram.setPreferredSize(new Dimension(maxstop-minstart+(diagram.height/diagram.colours.size())/2+StringWidth.width+300,diagram.height));
+        diagram.setPreferredSize(new Dimension(maxStop-minStart+(diagram.height/diagram.colours.size())/2+StringWidth.width+300,diagram.height));
         
         //Displaying diagram on frame
         JFrame frame = new JFrame();
